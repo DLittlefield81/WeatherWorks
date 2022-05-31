@@ -24,20 +24,19 @@ let app = {
     showWeather: (weatherData) => {
         console.log(weatherData); //Incoming Data
         //Extract Data
-        let { name } = weatherData;
-        let {
-            icon,description
-        } = weatherData.weather[0];
-        let {
-            temp,
-            humidity
-        } = weatherData.main;
-        let {
-            speed
-        } = weatherData.wind;
+        let {name} = weatherData;
+        let {icon,description} = weatherData.weather[0];
+        let {temp,humidity} = weatherData.main;
+        let {speed} = weatherData.wind;
         console.log(name, icon, description, temp, humidity, speed);
         
-
+        document.querySelector("#city").innerHTML = name;
+        document.querySelector("#icon").src = "https://openweathermap.org/img/wn/" + icon + ".png";
+        document.querySelector("#description").innerHTML = description;
+        document.querySelector("#temp").innerHTML = temp;
+        document.querySelector("#humidity").innerHTML = humidity + "%";
+        document.querySelector("#wind").innerHTML = wind;
+        
 
     }
 }
