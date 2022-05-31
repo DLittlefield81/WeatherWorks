@@ -12,44 +12,54 @@
 </head>
 
 <body>
-    <header>
+    <header class="container-fluid bg-secondary text-white p-4">
         <h1>WeatherWorks</h1>
     </header>
 
-    <div >
-        <div >
-            <div >
-                <h5 >Search for a City:</h5>
-                <div >
+    <div>
+        <div>
+            <div>
+                <h5>Search for a City:</h5>
+                <div>
                     <label for="searchCity">Name: </label>
                     <input id="searchCity" type="text" placeholder="Toronto" value="Toronto"
-                        aria-label="Enter a city">
-                    <div >
-                        <button  type="button" id="btnSearch">
-                           Search
+                        aria-label="Enter a city"><br>
+                    <label for="units">Units: </label>
+                    <select name="units" id="units">
+                        <option value="metric">Metric</option>
+                        <option value="imperial">Imperial</option>
+                    </select>
+                    <div>
+                        <button type="button" id="btnSearch">
+                            Search
                         </button>
                     </div>
                 </div>
-                <button  type="button" id="btnClearhistory">Clear history</button>
+                <button type="button" id="btnClearhistory">Clear history</button>
                 <form id="history"></form>
             </div>
-            <div >
-                <div >
+            <div>
+                <div>
                     <div class="weather row">
                         <!-- insert weather here -->
-                    </div>
-                </div>
-                <div>
-                    <div >
                         <h3>5-Day Forecast</h3>
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-header">
+                                Date
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Icon</li>
+                                <li class="list-group-item">Temp</li>
+                                <li class="list-group-item">Wind</li>
+                                <li class="list-group-item">Humidity</li>
+                                
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div >
-                    <div ></div>
-                
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <script src="./assets/js/script.js"></script>
