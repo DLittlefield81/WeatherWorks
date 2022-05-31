@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <title>WeatherWorks</title>
+</head>
+
+<body>
+    <header>
+        <h1>WeatherWorks</h1>
+    </header>
+
+    <div >
+        <div >
+            <div >
+                <h5 >Search for a City:</h5>
+                <div >
+                    <input id="inputCity" type="text" placeholder="Enter a city"
+                        aria-label="Enter a city">
+                    <div >
+                        <button  type="button" id="btnSearch">
+                           Search
+                        </button>
+                    </div>
+                </div>
+                <button  type="button" id="btnClearhistory">Clear history</button>
+                <form id="history"></form>
+            </div>
+            <div >
+                <div >
+                    <div>
+                        <div >
+                            <h3 id="city-name" ></h3>
+                            <img id="current-pic" alt="">
+                            <p id="temperature"></p>
+                            <p id="humidity"></p>
+                            <p id="wind-speed"></p>
+                            <p id="UV-index"></p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div >
+                        <h3>5-Day Forecast</h3>
+                    </div>
+                </div>
+                <div >
+                    <div ></div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
