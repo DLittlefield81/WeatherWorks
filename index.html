@@ -21,7 +21,8 @@
             <div >
                 <h5 >Search for a City:</h5>
                 <div >
-                    <input id="inputCity" type="text" placeholder="Enter a city"
+                    <label for="searchCity">Name: </label>
+                    <input id="searchCity" type="text" placeholder="Toronto" value="Toronto"
                         aria-label="Enter a city">
                     <div >
                         <button  type="button" id="btnSearch">
@@ -34,15 +35,8 @@
             </div>
             <div >
                 <div >
-                    <div>
-                        <div >
-                            <h3 id="city-name" ></h3>
-                            <img id="current-pic" alt="">
-                            <p id="temperature"></p>
-                            <p id="humidity"></p>
-                            <p id="wind-speed"></p>
-                            <p id="UV-index"></p>
-                        </div>
+                    <div class="weather row">
+                        <!-- insert weather here -->
                     </div>
                 </div>
                 <div>
@@ -58,7 +52,6 @@
         </div>
     </div>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 
