@@ -8,7 +8,7 @@ const clearEl = document.getElementById("clear-history");
 const searchEl = document.getElementById("search-button");
 const historyEl = document.getElementById("history");
 let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
-let APIKey = "41d95db3e8a81f9edfd2e2e5a2abf949";
+let APIKey = "95a18f19440055fdea2dbf0bc11186b8";
 
 
 //START APP
@@ -100,28 +100,28 @@ let app = {
             case 0:
             case 1:
             case 2:
-                uviEl.innerHTML = "Low Intensity";
+                uviEl.innerHTML = "😍 Low Intensity";
                 uviEl.setAttribute("class", "badge badge-success");
                 break;
             case 3:
             case 4:
             case 5:
-                uviEl.innerHTML = "Medium Intensity";
+                uviEl.innerHTML = "😊 Medium Intensity";
                 uviEl.setAttribute("class", "badge badge-warning");
                 break;
             case 6:
             case 7:
-                uviEl.innerHTML = "High Intensity";
+                uviEl.innerHTML = "😎 High Intensity";
                 uviEl.setAttribute("class", "badge badge-danger");
                 break;
             case 8:
             case 9:
             case 10:
-                uviEl.innerHTML = "Very High Intensity";
+                uviEl.innerHTML = "🥵 Very High Intensity";
                 uviEl.setAttribute("class", "badge badge-info");
                 break;
             case 11:
-                uviEl.innerHTML = "Extreme Intensity";
+                uviEl.innerHTML = "🤬 Extreme Intensity";
                 uviEl.setAttribute("class", "badge badge-primary");
                 break;
         }
@@ -200,25 +200,25 @@ clearEl.addEventListener("click", function () {
 
 
 
-function renderSearchHistory() {
-    historyEl.innerHTML = "";
-    for (let i = 0; i < searchHistory.length; i++) {
-        const historyItem = document.createElement("input");
-        historyItem.setAttribute("type", "text");
-        historyItem.setAttribute("readonly", true);
-        historyItem.setAttribute("class", "form-control d-block bg-white");
-        historyItem.setAttribute("value", searchHistory[i]);
-        historyItem.addEventListener("click", function () {
-            getWeather(historyItem.value);
-        })
-        historyEl.append(historyItem);
-    }
-}
+// function renderSearchHistory() {
+//     historyEl.innerHTML = "";
+//     for (let i = 0; i < searchHistory.length; i++) {
+//         const historyItem = document.createElement("input");
+//         historyItem.setAttribute("type", "text");
+//         historyItem.setAttribute("readonly", true);
+//         historyItem.setAttribute("class", "form-control d-block bg-white");
+//         historyItem.setAttribute("value", searchHistory[i]);
+//         historyItem.addEventListener("click", function () {
+//             app.fetchWeather(historyItem.value);
+//         })
+//         historyEl.append(historyItem);
+//     }
+// }
 
-renderSearchHistory();
-if (searchHistory.length > 0) {
-    getWeather(searchHistory[searchHistory.length - 1]);
-}
+// renderSearchHistory();
+// if (searchHistory.length > 0) {
+//     (searchHistory[searchHistory.length - 1]);
+// }
     }
 }
 app.init();
