@@ -1,12 +1,12 @@
-//const clearHistory = document.getElementById("#btnClearhistory");
-let searchCity = document.getElementById('searchCity').value;
+clearHistory = document.getElementById("#btnClearhistory");
+let searchCity = document.getElementById('enter-city').value;
 const uviEl = document.getElementById("uvi");
 const todayweatherEl = document.getElementById("today-weather");
 const fiveDayContainer = document.getElementById("fiveday-header");
 const fiveDayEl = document.getElementById("weather-forecast");
-const clearEl = document.getElementById("btnClearhistory");
-const searchEl = document.getElementById("btnSearch");
-const historyEl = document.getElementById("history-list");
+const clearEl = document.getElementById("clear-history");
+const searchEl = document.getElementById("search-button");
+const historyEl = document.getElementById("history");
 let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 let APIKey = "41d95db3e8a81f9edfd2e2e5a2abf949";
 
@@ -14,11 +14,14 @@ let APIKey = "41d95db3e8a81f9edfd2e2e5a2abf949";
 //START APP
 let app = {
     init: () => {
-        document
-            .getElementById('btnSearch')
-            .addEventListener('click', app.fetchWeather);
+        
+        console.log(searchCity)
+        searchEl.addEventListener('click', app.fetchWeather);
+        
     },
+
     fetchWeather: () => {
+        let searchCity = document.getElementById('enter-city').value;
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=${APIKey}`;
         console.log(url)
         fetch(url)
@@ -57,6 +60,10 @@ let app = {
         } = weatherData.wind;
         //Pull Data from weatherData
         console.log(name, lon, lat, icon, description, temp, humidity, speed);
+//SET TO LOCAL STORAGE
+                searchHistory.push(name);
+        localStorage.setItem("search", JSON.stringify(searchHistory));
+
         //Set Data to HTML
         document.querySelector("#city").innerHTML = "Current Weather in " + name;
         document.querySelector("#icon").src = "https://openweathermap.org/img/wn/" + icon + ".png";
@@ -133,9 +140,12 @@ let app = {
     },
     forecast: (fiveDayData) => {
         fiveDayContainer.classList.remove("d-none");
-        console.log(fiveDayData)
+        console.log(fiveDayData);
+        fiveDayEl.innerHTML = "";
         //Retrieve Data from fiveDayData  
         fiveDayData.list.forEach((item) => {
+            
+            //fiveDayEl.innerHTML = "";
             if (item.dt_txt.includes("00:00:00")) {
                 console.log("I am here");
                 console.log(item);
@@ -168,43 +178,47 @@ let app = {
             }
 
         })
-    }
-}
+
 // temp / wind / humidity / icon  http://openweathermap.org/img/wn/${data.weather[0].icon}.png"
 
 
 // Get history from local storage if any
-searchEl.addEventListener("click", function () {
-        const searchTerm = searchCity.value;
-        app.showWeather(searchTerm);
-        searchHistory.push(searchTerm);
-        localStorage.setItem("search", JSON.stringify(searchHistory));
-        renderSearchHistory();
-    }),
-    // Clear History button
-    clearEl.addEventListener("click", function () {
-        localStorage.clear();
-        searchHistory = [];
-        renderSearchHistory();
-    }),
-    function renderSearchHistory() {
-        historyEl.innerHTML = "";
-        for (let i = 0; i < searchHistory.length; i++) {
-            const historyItem = document.createElement("input");
-            historyItem.setAttribute("type", "text");
-            historyItem.setAttribute("readonly", true);
-            historyItem.setAttribute("class", "form-control d-block bg-white");
-            historyItem.setAttribute("value", searchHistory[i]);
-            historyItem.addEventListener("click", function () {
-                getWeather(historyItem.value);
-            })
-            historyEl.append(historyItem);
-        }
+// searchEl.addEventListener("click", function () {
+//     const searchTerm = cityEl.value;
+//     getWeather(searchTerm);
+//     searchHistory.push(searchTerm);
+//     localStorage.setItem("search", JSON.stringify(searchHistory));
+//     renderSearchHistory();
+// })
+
+// Clear History button
+clearEl.addEventListener("click", function () {
+    localStorage.clear();
+    searchHistory = [];
+    renderSearchHistory();
+})
 
 
-        if (searchHistory.length > 0) {
-            getWeather(searchHistory[searchHistory.length - 1]);
-        }
+
+function renderSearchHistory() {
+    historyEl.innerHTML = "";
+    for (let i = 0; i < searchHistory.length; i++) {
+        const historyItem = document.createElement("input");
+        historyItem.setAttribute("type", "text");
+        historyItem.setAttribute("readonly", true);
+        historyItem.setAttribute("class", "form-control d-block bg-white");
+        historyItem.setAttribute("value", searchHistory[i]);
+        historyItem.addEventListener("click", function () {
+            getWeather(historyItem.value);
+        })
+        historyEl.append(historyItem);
     }
-app.init();
+}
+
 renderSearchHistory();
+if (searchHistory.length > 0) {
+    getWeather(searchHistory[searchHistory.length - 1]);
+}
+    }
+}
+app.init();
