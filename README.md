@@ -19,7 +19,11 @@ Follow these steps to install this project on your local machine.
 Link to Deployed Application: https://dlittlefield81.github.io/WeatherWorks/
 
 
-![WordWise Trivia Game](assets/images/weatherworks.png)
+![WeatherWorks](assets/images/weatherworks.png)
+
+## References
+
+This code uses Weather API from openweathermap.org.
 
 
 ## License

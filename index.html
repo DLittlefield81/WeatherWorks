@@ -36,24 +36,27 @@
             </div>
             <div class="col-lg-9">
                 <div class="row mr-0">
-                    <div class="col-lg-11 card m-3 " id="today-weather">
-                        <div class="card-body">
+                    <div class="col-lg-11 card m-3 d-none" id="today-weather">
+                        <div  class="card-body">
                             <h3 id="city" class="city align-middle"></h3>
+                            
                             <img id="icon" alt="">
+                            
                             <p id="description" class="text-uppercase"></p>
-                            <p id="temp" class=""></p>
-                            <p id="humidity" class=""></p>
-                            <p id="wind" class=""></p>
-                            <p id="uvi" class=""></p>
+                            
+                            <p id="" class="">Temp: <span id="temp"></span></pid>
+                            <p id="" class="">Humidity: <span id="humidity"></span></p>
+                            <p id="" class="">Wind Speed: <span id="wind"></span></p>
+                            <p id="" class="">UV Index: <span id="uvi"></span></p>
                         </div>
                     </div>
                 </div>
-                <div class="row" id="fiveday-header">
+                <div class="row d-none" id="fiveday-header">
                     <div class="col-12">
                         <h3>5-Day Forecast</h3>
                     </div>
                 </div>
-                <div class="row">
+                <div id="weather-forecast" class="d-flex flex-row">
 
                 </div>
             </div>
