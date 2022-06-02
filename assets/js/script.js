@@ -15,7 +15,7 @@ let APIKey = "95a18f19440055fdea2dbf0bc11186b8";
 let app = {
     init: () => {
 
-        //app.renderSearchHistory();
+        app.renderSearchHistory();
         searchEl.addEventListener('click', app.fetchWeather);
 
     },
@@ -65,6 +65,7 @@ let app = {
         } else {
             searchHistory.push(name);
             localStorage.setItem("search", JSON.stringify(searchHistory));
+            app.renderSearchHistory();
         }
 
 
@@ -188,6 +189,7 @@ let app = {
     },
     renderSearchHistory: () => {
         historyEl.innerHTML = "";
+        console.log(searchHistory.length)
         for (let i = 0; i < searchHistory.length; i++) {
             const historyItem = document.createElement("input");
             historyItem.setAttribute("type", "text");
@@ -203,7 +205,7 @@ let app = {
         }
 
 
-        app.renderSearchHistory();
+        
         if (searchHistory.length > 0) {
             (searchHistory[searchHistory.length - 1]);
         }
