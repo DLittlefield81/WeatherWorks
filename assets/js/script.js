@@ -15,7 +15,7 @@ let APIKey = "95a18f19440055fdea2dbf0bc11186b8";
 let app = {
     init: () => {
         
-        console.log(searchCity)
+        
         searchEl.addEventListener('click', app.fetchWeather);
         
     },
@@ -23,7 +23,7 @@ let app = {
     fetchWeather: () => {
         let searchCity = document.getElementById('enter-city').value;
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&units=metric&appid=${APIKey}`;
-        console.log(url)
+       
         fetch(url)
             .then(resp => {
                 if (!resp.ok) throw new Error(resp.statusText);
@@ -37,7 +37,7 @@ let app = {
     },
     showWeather: (weatherData) => {
         todayweatherEl.classList.remove("d-none");
-        console.log(weatherData); //Incoming Data
+        //Incoming Data
         //Extract Data
 
         let {
@@ -58,11 +58,16 @@ let app = {
         let {
             speed
         } = weatherData.wind;
-        //Pull Data from weatherData
-        console.log(name, lon, lat, icon, description, temp, humidity, speed);
+       
+        
 //SET TO LOCAL STORAGE
-                searchHistory.push(name);
+        if (searchHistory.indexOf(name) !== -1) {
+            
+        } else {
+            searchHistory.push(name);
         localStorage.setItem("search", JSON.stringify(searchHistory));
+        }
+                
 
         //Set Data to HTML
         document.querySelector("#city").innerHTML = "Current Weather in " + name;
@@ -84,8 +89,7 @@ let app = {
             .catch(console.err);
     },
     showUV: (uvData) => {
-        console.log("uvData")
-        console.log(uvData)
+        
         let {
             uvi
         } = uvData.current;
@@ -125,7 +129,7 @@ let app = {
                 uviEl.setAttribute("class", "badge badge-primary");
                 break;
         }
-        console.log("Current UV After Rounding: " + uvi)
+        
 
         let fiveDay = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${APIKey}`;
         fetch(fiveDay)
@@ -140,15 +144,14 @@ let app = {
     },
     forecast: (fiveDayData) => {
         fiveDayContainer.classList.remove("d-none");
-        console.log(fiveDayData);
+        
         fiveDayEl.innerHTML = "";
         //Retrieve Data from fiveDayData  
         fiveDayData.list.forEach((item) => {
             
             //fiveDayEl.innerHTML = "";
             if (item.dt_txt.includes("00:00:00")) {
-                console.log("I am here");
-                console.log(item);
+               
 
 
                 const newDiv = document.createElement("div");
@@ -179,17 +182,7 @@ let app = {
 
         })
 
-// temp / wind / humidity / icon  http://openweathermap.org/img/wn/${data.weather[0].icon}.png"
 
-
-// Get history from local storage if any
-// searchEl.addEventListener("click", function () {
-//     const searchTerm = cityEl.value;
-//     getWeather(searchTerm);
-//     searchHistory.push(searchTerm);
-//     localStorage.setItem("search", JSON.stringify(searchHistory));
-//     renderSearchHistory();
-// })
 
 // Clear History button
 clearEl.addEventListener("click", function () {
@@ -200,25 +193,27 @@ clearEl.addEventListener("click", function () {
 
 
 
-// function renderSearchHistory() {
-//     historyEl.innerHTML = "";
-//     for (let i = 0; i < searchHistory.length; i++) {
-//         const historyItem = document.createElement("input");
-//         historyItem.setAttribute("type", "text");
-//         historyItem.setAttribute("readonly", true);
-//         historyItem.setAttribute("class", "form-control d-block bg-white");
-//         historyItem.setAttribute("value", searchHistory[i]);
-//         historyItem.addEventListener("click", function () {
-//             app.fetchWeather(historyItem.value);
-//         })
-//         historyEl.append(historyItem);
-//     }
-// }
+function renderSearchHistory() {
+    historyEl.innerHTML = "";
+    for (let i = 0; i < searchHistory.length; i++) {
+        const historyItem = document.createElement("input");
+        historyItem.setAttribute("type", "text");
+        historyItem.setAttribute("readonly", true);
+        historyItem.setAttribute("class", "form-control d-block bg-white");
+        historyItem.setAttribute("value", searchHistory[i]);
+        historyItem.addEventListener("click", function () {
+  
+            document.getElementById("enter-city").value = historyItem.value
+            app.fetchWeather(historyItem);
+        })
+        historyEl.append(historyItem);
+    }
+}
 
-// renderSearchHistory();
-// if (searchHistory.length > 0) {
-//     (searchHistory[searchHistory.length - 1]);
-// }
+renderSearchHistory();
+if (searchHistory.length > 0) {
+    (searchHistory[searchHistory.length - 1]);
+}
     }
 }
 app.init();
