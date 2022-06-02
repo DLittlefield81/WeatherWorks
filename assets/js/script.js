@@ -15,7 +15,7 @@ let APIKey = "95a18f19440055fdea2dbf0bc11186b8";
 let app = {
     init: () => {
 
-        app.renderSearchHistory();
+        //app.renderSearchHistory();
         searchEl.addEventListener('click', app.fetchWeather);
 
     },
@@ -213,6 +213,6 @@ let app = {
 clearEl.addEventListener("click", function () {
     localStorage.clear();
     searchHistory = [];
-    renderSearchHistory();
+    app.renderSearchHistory();
 })
 app.init();
